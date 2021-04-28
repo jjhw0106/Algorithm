@@ -2,7 +2,7 @@ package Recursive;
 
 public class puff {	//
 	public static void main(String[] args) {
-		puff(4,6,4);
+			puff(4,6,4);
 	}
 	public static void puff(int n, int a, int b)
 	{
