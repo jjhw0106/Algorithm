@@ -1,4 +1,4 @@
-package programmers;
+package coding_test;
 
 public class ¿ùÄÚÃ¨1 {
 	public static void main(String[] args) {
@@ -15,13 +15,13 @@ public class ¿ùÄÚÃ¨1 {
 		for (int i = left; i <= right; i++) {
 			answer += find(i);
 		}
-		
+
 		return answer;
 	}
 
 	public static int find(int num) {
 		int cnt = 0;
-		for (int i =1; i <= num; i++) {
+		for (int i = 1; i <= num; i++) {
 			if (num % i == 0) {
 				cnt++;
 			}
