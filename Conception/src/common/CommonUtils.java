@@ -42,7 +42,6 @@ public class CommonUtils {
 	}
 
 	int sorted[] = new int[Controller.nums.length];
-
 	public void merge(int arr[], int m, int middle, int n) {
 		int i = m;
 		int j = middle + 1;
