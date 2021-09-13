@@ -1,7 +1,5 @@
 package dstructure;
 
-public class MyStack {
-
 import java.util.Arrays;
 
 public class MyStack {
