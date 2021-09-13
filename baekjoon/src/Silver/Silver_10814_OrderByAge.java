@@ -8,16 +8,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-class Person implements Comparator<Object>{
+class Person implements Comparable<Person>{
 	int age;
 	String name;
-	@Override
-	public int compare(Object o1, Object o2) {
-		
-		return o1.age - o2.age;
-	}
 	
+	@Override
+	public int compareTo(Person p) {
+		return age-p.age;
+	}
 }
 
 public class Silver_10814_OrderByAge {
@@ -34,6 +32,11 @@ public class Silver_10814_OrderByAge {
 			person.name = arr[1];
 			list.add(person);
 		}
-		Collections.sort(list, Comparator<Person>);
+		
+		Collections.sort(list);
+		for (Person person : list) {
+			System.out.println(person.age+" "+person.name);
+			
+		}
 	}
 }
