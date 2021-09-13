@@ -1,9 +1,6 @@
 package sort;
 
-import java.util.Random;
-
 import common.CommonUtils;
-
 
 public class Controller {
 	public static int[] nums = {5,3,4,2,1,8,7,9,5,3,1,5,9,9};
