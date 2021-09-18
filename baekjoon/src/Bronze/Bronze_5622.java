@@ -6,32 +6,36 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Scanner;
 
 public class Bronze_5622 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		Map<Integer, String> map = new HashMap<Integer, String>();
-		String[] arr = new String[2];
-		arr[0] = "abc";
-		arr[1] = "def";
+		Map<String, Integer> map = new HashMap<String, Integer>();
 
-		for (int i = 0; i < arr.length; i++) {
-			map.put(i + 1, arr[i]);
+		String[] keys = new String[10];
+		keys[0] = "";
+		keys[1] = "ABC";
+		keys[2] = "DEF";
+		keys[3] = "GHI";
+		keys[4] = "JKL";
+		keys[5] = "MNO";
+		keys[6] = "PQRS";
+		keys[7] = "TUV";
+		keys[8] = "WXYZ";
+		keys[9] = "";
+		for (int i = 0; i < keys.length; i++) {
+			map.put(keys[i], i + 1);
 		}
 
-		int sum = 0;
-		String a = br.readLine();
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < a.length(); j++) {
-				String temp =a.substring(j,j+1);
-				if (arr[i].contains(temp)) {
-					sum += (i + 1);
-					break;
+		String input = br.readLine();
+		int sum =0;
+		for (int i = 0; i < input.length(); i++) {
+			for (Entry<String, Integer> entry : map.entrySet()) {
+				if (entry.getKey().contains(input.substring(i, i + 1))) {
+					sum +=entry.getValue()+1;
 				}
 			}
 		}
 		System.out.println(sum);
-
 	}
 }

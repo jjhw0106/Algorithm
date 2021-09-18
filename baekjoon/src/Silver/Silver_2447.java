@@ -3,39 +3,21 @@ package Silver;
 import java.util.Scanner;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Silver_2447 {
-
-	static char[] a;
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		a = new char[n];
-		star(n);
-
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int num = Integer.parseInt(br.readLine());
 	}
 
-	static void star(int n) {
-		if (n == 3) {
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					if (i == n / 3 && j == n / 3) {
-						for (int k = 0; k < n / 3; k++) {
-							for (int k2 = 0; k2 < n / 3; k2++) {
-								System.out.print(" ");
-							}
-						}
-						continue;
-					}
-					System.out.print("*");
-					if (j == n - 1)
-						System.out.println();
-				}
-			}
-//			return;
+	static void print(int n) { // 5번째 세트 공백
+		for (int i = 0; i < n; i++) {
+			System.out.print("*");
 		}
-		if (n >= 9)
-			star(n / 3);
+	}
+
+	static void star(int garo, int sero) {
 	}
 }
