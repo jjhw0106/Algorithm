@@ -7,15 +7,10 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		while (true) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
-			int sum = a + b;
-			sb.append(sum).append("\n");
-			System.out.println(sum);
-			if (br == null)
-				break;
+		String str = br.readLine();
+		String arr[] = str.split(" ");
+		for(int i=0; i<arr.length; i++) {
+			System.out.println(arr[i]);
 		}
 	}
 }

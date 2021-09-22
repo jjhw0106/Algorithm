@@ -3,7 +3,6 @@ package Silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 //산술평균 : N개의 수들의 합을 N으로 나눈 값
@@ -12,53 +11,41 @@ import java.util.Arrays;
 //범위 : N개의 수들 중 최댓값과 최솟값의 차이
 public class Silver_2108 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		Cal c = new Cal();
+
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		int num[] = new int[N];
-		for (int i = 0; i < num.length; i++) {
-			num[i] = Integer.parseInt(br.readLine());
-		}
-		System.out.println(c.average(num));
-		System.out.println(c.mid(num));
-		System.out.println(c.mode(num));
-	}
 
-}
-
-class Cal {
-	int average(int[] num) {
+		int num = Integer.parseInt(br.readLine());
+		int nums[] = new int[num];
 		int sum = 0;
-		for (int i = 0; i < num.length; i++) {
-			sum += num[i];
-			System.out.println(num[i]);
+		int counting[] = new int[8001];
+		for (int i = 0; i < num; i++) {
+			int a = Integer.parseInt(br.readLine());
+			nums[i] = a;
+			counting[a + 4000]++;
+			sum += nums[i];
 		}
-		return sum / num.length;
-	}
-
-	int mid(int[] num) {
-		int value = num[num.length / 2];
-
-		return value;
-	}
-
-	int mode(int[] num) {
-		Arrays.sort(num);
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		int cnt[] = new int[4001];
-		for (int i = 0; i < num.length; i++) {
-			cnt[num[i]]++;
+		
+		int max = -10000;
+		int mode=0;
+		boolean flag=false;
+		for (int i = 0; i < counting.length; i++) {
+			if (counting[i] > max ) {
+				max = counting[i];
+				mode=i;
+				flag=true;
+			}else if(counting[i]==max && flag==true){
+				mode=i;
+				flag=false;
+			}
 		}
-		int value = 0;
+		
 
-		for (int i = 0; i < cnt.length; i++) {
-			if (value < cnt[i])
-				value = cnt[i];
-		}
-		for (int i = 0; i < cnt.length; i++) {
-			if (cnt[i] == value)
-				list.add(cnt[i]);
-		}
-		return list.get(2);
+		Arrays.sort(nums);
+
+		System.out.println(Math.round((double) sum / num));
+		System.out.println(nums[num / 2]);
+		System.out.println(mode-4000);
+		System.out.println(nums[nums.length - 1] - nums[0]);
+
 	}
 }
