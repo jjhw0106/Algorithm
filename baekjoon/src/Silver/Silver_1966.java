@@ -17,7 +17,6 @@ public class Silver_1966 {
 
 		// 1. 테스트케이스의 갯수
 		int t = Integer.parseInt(br.readLine());
-		int idx = 0;
 		while (t-- > 0) {
 			// 2. 문서 갯수 n, 궁금한 문서 m
 			String str = br.readLine();
@@ -36,26 +35,29 @@ public class Silver_1966 {
 			}
 //			max인지 판단
 //			max가 아니면 큐의 맨 뒤로
-
 			int cnt = 0;
-			boolean isMax = true;
 			while (!q.isEmpty()) {
+				boolean isMax = true;
 				int[] target = q.poll();
-				cnt++;
 				for (int i = 0; i < q.size(); i++) {
 					if (target[1] < q.get(i)[1]) {
 						q.offer(target);
+						for (int j = 0; j < i; j++) {
+							q.offer(q.poll());
+						}
 						isMax = false;
 						break;
 					}
 				}
-				if (isMax == true && target[0] == m) {
-					sb.append(cnt);
+				if (isMax == false) {
+					continue;
 				}
-				isMax = false;
+				cnt++;
+				if (target[0] == m) {
+					break;
+				}
 			}
-//			max면 타겟 idx인지 확인
-//			아니면 다음 loop
+			sb.append(cnt);
 		}
 		System.out.println(sb);
 	}
