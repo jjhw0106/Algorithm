@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Silver_1260_BfsDfs {
+public class Silver_BfsDfs_1260 {
 
 	static int n;
 	static int m;
