@@ -6,7 +6,10 @@ public class Traversal {
 		if (node == null) {
 			return;
 		}
-		
+		System.out.print(node.value+" ");
+		preOrderTraversal(node.left);
+		preOrderTraversal(node.right);
+
 	}
 
 	void inOrderTraversal(Node node) {
@@ -14,11 +17,16 @@ public class Traversal {
 			return;
 		}
 		inOrderTraversal(node.left);
-		System.out.println(node.value);
+		System.out.print(node.value+" ");
 		inOrderTraversal(node.right);
 	}
 
-	void postOrderTraversal() {
-
+	void postOrderTraversal(Node node) {
+		if (node == null) {
+			return;
+		}
+		postOrderTraversal(node.left);
+		postOrderTraversal(node.right);
+		System.out.print(node.value+" ");
 	}
 }

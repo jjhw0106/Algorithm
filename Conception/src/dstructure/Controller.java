@@ -1,6 +1,5 @@
 package dstructure;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Controller {
@@ -52,7 +51,14 @@ public class Controller {
 				bst.insert(sc.nextInt());
 			}
 			System.out.println(bst.rootNode.value);
+			System.out.print("inOrder : ");
 			bst.inOrderPrint(bst.rootNode);
+			System.out.println();
+			System.out.print("preOrder : ");
+			bst.preOrderPrint(bst.rootNode);
+			System.out.println();
+			System.out.print("postOrder : ");
+			bst.postOrderPrint(bst.rootNode);
 			break;
 		case 4:
 
