@@ -2,7 +2,11 @@ package dstructure;
 
 public class Traversal {
 
-	void preOrderTraversal() {
+	void preOrderTraversal(Node node) {
+		if (node == null) {
+			return;
+		}
+		
 	}
 
 	void inOrderTraversal(Node node) {
