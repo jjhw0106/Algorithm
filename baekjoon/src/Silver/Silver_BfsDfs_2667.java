@@ -30,13 +30,24 @@ public class Silver_BfsDfs_2667 {
 			}
 		}
 
+		// dfs
 		for (int i = 0; i < num; i++) {
 			for (int j = 0; j < num; j++) {
 				if (map[i][j] == 1) {
-					bfs(i, j);
+					dfs(i, j);
+					list.add(cnt);
+					cnt = 0;
 				}
 			}
 		}
+		// bfs
+//		for (int i = 0; i < num; i++) {
+//			for (int j = 0; j < num; j++) {
+//				if (map[i][j] == 1) {
+//					bfs(i, j);
+//				}
+//			}
+//		}
 		System.out.println(list.size());
 		Collections.sort(list);
 		for (int list : list) {
@@ -49,6 +60,19 @@ public class Silver_BfsDfs_2667 {
 	static int[] dc = { 0, 0, 1, -1 };
 	static int cnt = 0;
 	static int complex = 0;
+
+	static void dfs(int r, int c) {
+		map[r][c] = 9;
+		cnt++;
+		for (int i = 0; i < 4; i++) {
+			int nr = r + dr[i];
+			int nc = c + dc[i];
+			if (nr >= 0 && nr < num && nc >= 0 && nc < num) {
+				if (map[nr][nc] == 1)
+					dfs(nr, nc);
+			}
+		}
+	}
 
 	static void bfs(int r, int c) {
 		Queue<int[]> q = new LinkedList<int[]>();
