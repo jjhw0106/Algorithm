@@ -13,7 +13,10 @@ public class MyBST {
 			while (true) {
 				currentNode = head;
 				if (head.value > element) {
+					System.out.println("cur1: "+currentNode);
 					head = head.left;
+					System.out.println("cur2: "+currentNode);
+					
 					if (head == null) {
 						currentNode.left = new Node(element);
 						break;

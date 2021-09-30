@@ -40,7 +40,7 @@ public class Gold_Stack_17298 {
 		StringBuilder sb = new StringBuilder();
 		while (!aStack.isEmpty()) {
 			sb.append(aStack.pop());
-			if(aStack.size()>1) {
+			if (aStack.size() > 0) {
 				sb.append(" ");
 			}
 		}
