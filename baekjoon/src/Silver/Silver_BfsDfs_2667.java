@@ -24,40 +24,70 @@ public class Silver_BfsDfs_2667 {
 		map = new int[num][num];
 
 		for (int i = 0; i < num; i++) {
-			for (int j = 0; j < num; j++) {
-				apts[i] = br.readLine();
+			apts[i] = br.readLine();
+			for (int j = 0; j < apts.length; j++) {
 				map[i][j] = Integer.parseInt(apts[i].substring(j, j + 1));
 			}
 		}
 
+		// dfs
 		for (int i = 0; i < num; i++) {
 			for (int j = 0; j < num; j++) {
 				if (map[i][j] == 1) {
-					map[i][j] = 9;
-					bfs(i, j);
+					dfs(i, j);
+					list.add(cnt);
+					cnt = 0;
 				}
 			}
 		}
+		// bfs
+//		for (int i = 0; i < num; i++) {
+//			for (int j = 0; j < num; j++) {
+//				if (map[i][j] == 1) {
+//					bfs(i, j);
+//				}
+//			}
+//		}
 		System.out.println(list.size());
 		Collections.sort(list);
-		
+		for (int list : list) {
+			System.out.println(list);
+		}
+
 	}
 
 	static int[] dr = { 1, -1, 0, 0 };
 	static int[] dc = { 0, 0, 1, -1 };
+	static int cnt = 0;
+	static int complex = 0;
+
+	static void dfs(int r, int c) {
+		map[r][c] = 9;
+		cnt++;
+		for (int i = 0; i < 4; i++) {
+			int nr = r + dr[i];
+			int nc = c + dc[i];
+			if (nr >= 0 && nr < num && nc >= 0 && nc < num) {
+				if (map[nr][nc] == 1)
+					dfs(nr, nc);
+			}
+		}
+	}
 
 	static void bfs(int r, int c) {
 		Queue<int[]> q = new LinkedList<int[]>();
-		int cnt = 1;
+		map[r][c] = 9;
+		cnt++;
 		q.add(new int[] { r, c });
 		while (!q.isEmpty()) {
-			r = q.peek()[0];
-			c = q.poll()[1];
+			int[] now = q.poll();
 			for (int i = 0; i < 4; i++) {
-				int nr = r + dr[i];
-				int nc = r + dc[i];
-
-				if (nr >= 0 && nr < num && nc >= 0 && nc < num && map[nr][nc] == 1) {
+				int nr = now[0] + dr[i];
+				int nc = now[1] + dc[i];
+				if (nr < 0 || nc < 0 || nr >= num || nc >= num) {
+					continue;
+				}
+				if (map[nr][nc] == 1) {
 					map[nr][nc] = 9;
 					q.add(new int[] { nr, nc });
 					cnt++;
@@ -65,5 +95,6 @@ public class Silver_BfsDfs_2667 {
 			}
 		}
 		list.add(cnt);
+		cnt = 0;
 	}
 }
