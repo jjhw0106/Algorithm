@@ -31,22 +31,24 @@ public class Silver_BfsDfs_1697 {
 					System.out.println(depth);
 					return;
 				}
-				if (now-1>=0&&now - 1 < k + 1) {
+				if (now - 1 >= 0 && now - 1 < k + 1) {
 					q.offer(now - 1);
 					visited[now - 1] = 1;
+
+					if (now + 1 < k + 1) {
+						q.offer(now + 1);
+						visited[now + 1] = 1;
+					}
+					if (now * 2 < k + 1) {
+						q.offer(now * 2);
+						visited[now * 2] = 1;
+					}
 				}
-				if (now + 1 < k + 1) {
-					q.offer(now + 1);
-					visited[now + 1] = 1;
-				}
-				if (now * 2 < k + 1) {
-					q.offer(now * 2);
-					visited[now * 2] = 1;
-				}
+				depth++;
 			}
-			depth++;
 		}
 	}
+}
 //		Queue<int[]> q = new LinkedList<int[]>();
 //		q.add(new int[] { n });
 //		while (!q.isEmpty()) {
@@ -64,4 +66,3 @@ public class Silver_BfsDfs_1697 {
 //			}
 //			depth++;
 //		}
-}
