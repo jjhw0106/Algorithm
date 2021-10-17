@@ -1,8 +1,10 @@
 package Gold;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,38 +14,36 @@ import java.util.StringTokenizer;
 public class Gold_Stack_17298 {
 	static Stack<Integer> stack;
 
+//	4
+//	9 5 4 8
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int n = Integer.parseInt(br.readLine());
 		String str = br.readLine();
-
 		StringTokenizer st = new StringTokenizer(str, " ");
-
 		int[] arr = new int[n];
-		int[] target = new int[n];
 		for (int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
-			target[i] = arr[i];
 		}
-		Arrays.sort(arr);
 
-		List<Integer> ansList = new ArrayList<Integer>();
-		// arr 정렬해서 stack에 저장
-		stack = new Stack<Integer>();
-		for (int i = arr.length - 1; i >= 0; i--) {
-			stack.push(arr[i]);
+		Stack<Integer> stack = new Stack<Integer>();
+		stack.add(0);
+		for (int i = 1; i < arr.length; i++) {
+			while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
+				arr[stack.pop()] = arr[i];
+			}
+			stack.push(i);
 		}
-		
-		int idx = 0;
-		
-		if(target[idx] < stack.pop()) {
-			
+		while (!stack.isEmpty()) {
+			arr[stack.pop()] = -1;
 		}
+		for (int i = 0; i < arr.length; i++) {
+			bw.write(arr[i]+" ");
 		
-		
-		for (Integer integer : ansList) {
-			System.out.println(integer);
 		}
+		br.close();
+		bw.close();
 	}
 }
