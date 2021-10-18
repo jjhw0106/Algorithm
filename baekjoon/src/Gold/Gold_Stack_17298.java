@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 
 public class Gold_Stack_17298 {
 	static Stack<Integer> stack;
+	static List<Integer> ansList = new ArrayList<Integer>();
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,29 +22,33 @@ public class Gold_Stack_17298 {
 		StringTokenizer st = new StringTokenizer(str, " ");
 
 		int[] arr = new int[n];
-		int[] target = new int[n];
 		for (int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
-			target[i] = arr[i];
 		}
-		Arrays.sort(arr);
 
-		List<Integer> ansList = new ArrayList<Integer>();
-		// arr 정렬해서 stack에 저장
 		stack = new Stack<Integer>();
-		for (int i = arr.length - 1; i >= 0; i--) {
-			stack.push(arr[i]);
+		stack.add(0);
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i] <= arr[i - 1]) {
+				stack.push(i);
+			} else {
+				for (int j = stack.size() - 1; j >= 0; j--) {
+					int temp = stack.pop();
+					if (arr[temp] > arr[i]) {
+						break;
+					}
+					ansList.add(arr[temp]);
+				}
+			}
 		}
-		
-		int idx = 0;
-		
-		if(target[idx] < stack.pop()) {
-			
-		}
-		
-		
-		for (Integer integer : ansList) {
-			System.out.println(integer);
+		System.out.println(ansList.toString());
+	}
+
+	void compare(int cur) {
+		int temp = stack.pop();
+		while(temp <cur) {
+			ansList.add(arr[temp]);
 		}
 	}
+
 }
