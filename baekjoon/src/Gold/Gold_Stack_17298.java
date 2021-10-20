@@ -29,30 +29,6 @@ public class Gold_Stack_17298 {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 
-<<<<<<< HEAD
-		stack = new Stack<Integer>();
-		stack.add(0);
-		for (int i = 1; i < arr.length; i++) {
-			if (arr[i] <= arr[i - 1]) {
-				stack.push(i);
-			} else {
-				for (int j = stack.size() - 1; j >= 0; j--) {
-					int temp = stack.pop();
-					if (arr[temp] > arr[i]) {
-						break;
-					}
-					ansList.add(arr[temp]);
-				}
-			}
-		}
-		System.out.println(ansList.toString());
-	}
-
-	void compare(int cur) {
-		int temp = stack.pop();
-		while(temp <cur) {
-			ansList.add(arr[temp]);
-=======
 		Stack<Integer> stack = new Stack<Integer>();
 		stack.add(0);
 		for (int i = 1; i < arr.length; i++) {
@@ -67,7 +43,6 @@ public class Gold_Stack_17298 {
 		for (int i = 0; i < arr.length; i++) {
 			bw.write(arr[i]+" ");
 		
->>>>>>> 03c97dc640d78e1fa0f7f592ed6f87f16d06512b
 		}
 		br.close();
 		bw.close();
