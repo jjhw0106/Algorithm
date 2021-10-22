@@ -42,6 +42,7 @@ public class Gold_Stack_17298 {
 		}
 		for (int i = 0; i < arr.length; i++) {
 			bw.write(arr[i]+" ");
+		
 		}
 		br.close();
 		bw.close();
