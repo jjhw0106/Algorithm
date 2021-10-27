@@ -6,19 +6,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.PriorityQueue;
 
-public class Gold_Greedy_1202 {
+public class Gold_Greedy_PriorityQ_1202 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String[] temp = br.readLine().split(" ");
 		int n = Integer.parseInt(temp[0]);
 		int k = Integer.parseInt(temp[1]);
-
-		Queue<int[]> q = new LinkedList<int[]>();
+		long answer = 0;
 		List<int[]> list = new ArrayList<int[]>();
+		List<Integer> bags = new ArrayList<Integer>();
 		for (int i = 0; i < n; i++) {
 			temp = br.readLine().split(" ");
 			int[] jewel = new int[] { Integer.parseInt(temp[0]), Integer.parseInt(temp[1]) };
@@ -28,26 +27,31 @@ public class Gold_Greedy_1202 {
 		Collections.sort(list, new Comparator<int[]>() {
 			@Override
 			public int compare(int[] o1, int[] o2) {
-				if (o1[0] == o2[0]) {
-					return -(o2[1] - o1[1]);
-				}
-				return o2[0] - o1[0];
+				return o1[0] - o2[0];
 			}
 		});
-		for (int[] is : list) {
-			System.out.println(is[0] + "," + is[1]);
-		}
 
-		int idx = 0;
-		int answer = 0;
 		for (int i = 0; i < k; i++) {
 			int c = Integer.parseInt(br.readLine());
-			if (list.get(idx)[0] < c) {
-				answer += list.get(idx)[1];
-				idx++;
-			}
+			bags.add(c);
 		}
 
+		Collections.sort(bags, new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1 - o2;
+			}
+		});
+
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
+		int idx = 0;
+		for (Integer integer : bags) {
+			while (idx<n&&list.get(idx)[0] <= integer) {
+				pq.add(list.get(idx++)[1]);
+			}
+			if (!pq.isEmpty())
+				answer += pq.poll();
+		}
 		System.out.println(answer);
 		// 시간초과
 		// jewel을 300000으로 할당 후 보석의 무게를 idx, 값어치를 jewel[idx]의 값으로 초기화
