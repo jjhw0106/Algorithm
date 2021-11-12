@@ -24,7 +24,7 @@ public class Silver_Recursion_5568 {
 			arr[i]=Integer.parseInt(br.readLine());
 		}
 		dfs("",k);
-		System.out.println(set.toString());
+		System.out.println(set.size());
 	}
 
 	public static void dfs(String value, int remain) {
@@ -36,9 +36,7 @@ public class Silver_Recursion_5568 {
 		for(int i=0; i<arr.length;i++) {
 			if(visited[i]==true	) continue;
 			visited[i]=true;
-			value+=arr[i];
-			System.out.println(value);
-			dfs(value,remain-1);
+			dfs(value+arr[i],remain-1);
 			visited[i]=false;
 		}
 	}

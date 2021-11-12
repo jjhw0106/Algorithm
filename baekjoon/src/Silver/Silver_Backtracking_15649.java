@@ -11,38 +11,30 @@ public class Silver_Backtracking_15649 {
 	static int m;
 	static int[] value;
 	static boolean[] visited;
-	static int depth;
-	static int cnt;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String str = br.readLine();
+		int n = Integer.parseInt(str.split(" ")[0]);
+		int m = Integer.parseInt(str.split(" ")[1]);
 
-		n = Integer.parseInt(str.split(" ")[0]);
-		m = Integer.parseInt(str.split(" ")[1]);
 		value = new int[n];
 		visited = new boolean[n];
-		cnt = 0;
-		for (int i = 0; i < n; i++) {
-			value[i] = i + 1;
-		}
-		dfs(0);
+
+		String s = "";
+		dfs(s, m);
 	}
 
-	static public void dfs(int idx) {
-		if (cnt >= m) {
-//			System.out.print(value[idx] + " ");
-			visited = new boolean[n];
-			cnt = 0;
+	public static void dfs(String s, int remain) {
+		if(remain==0) {
+			System.out.println(s.trim());
 			return;
 		}
-		visited[idx] = true;
-		System.out.print(value[idx] + " ");
-		for (int i = 0; i < n; i++) {
-			if (visited[i] == false) {
-				cnt++;
-				dfs(i);
-				System.out.println();
+		for(int i=0; i<value.length;i++) {
+			if(visited[i]!=true) {
+				visited[i]=true;
+				dfs(s+(i+1)+" ", remain-1);
+				visited[i]=false;
 			}
 		}
 	}
