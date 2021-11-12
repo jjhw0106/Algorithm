@@ -17,14 +17,11 @@ public class Silver_BackTracking_14889 {
 				board[i][j] = Integer.parseInt(str.split(" ")[j]);
 			}
 		}
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
-		for(int i=0; i<n;i++) {
-			for(int j=0; j<n; j++) {
-				if(i==j) {
-					pq.add(board[i][j]);
-				}
-			}
-		}
+		
+		int[][] team = new int[n*n-1/2][2];
+		
 	}
-
+	static public void teamMake(int[][] board) {
+		
+	}
 }
