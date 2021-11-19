@@ -4,63 +4,65 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.Comparator;
 
 public class Silver_BfsDfs_2667 {
 	static int[][] map;
-	static int[][] visited;
+	static boolean[][] visited;
 	static int n;
-	static List<Integer> apts;
-	static int aptCnt = 0;
+	static ArrayList<Integer> apts;
+	static int cnt;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		n = Integer.parseInt(br.readLine());
 		map = new int[n][n];
-		visited = new int[n][n];
+		visited = new boolean[n][n];
 		apts = new ArrayList<Integer>();
+		cnt = 0;
+
 		for (int i = 0; i < n; i++) {
 			String str = br.readLine();
 			for (int j = 0; j < n; j++) {
 				map[i][j] = Integer.parseInt(str.split("")[j]);
 			}
 		}
-		int cnt = 0;
-		aptCnt = 0;
+
+		int complex = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				if (visited[i][j] == 0 && map[i][j] == 1) {
+				if (map[i][j] == 1 && visited[i][j] == false) {
+					complex++;
 					dfs(i, j);
-					cnt++;
-					apts.add(aptCnt);
-					System.out.println("cnt="+cnt);
-					System.out.println(aptCnt);
-					aptCnt = 0;
+					apts.add(cnt);
+					cnt = 0;
 				}
 			}
 		}
-		for (int string : apts) {
-			System.out.println(string);
+		System.out.println(complex);
+		apts.sort(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1 - o2;
+			}
+		});
+		for (Integer integer : apts) {
+			System.out.println(integer);
 		}
 
 	}
 
-	static int[] dy = { -1, 0, 1, 0 };
-	static int[] dx = { 0, -1, 0, 1 };
+	static int dy[] = { -1, 0, 1, 0 };
+	static int dx[] = { 0, -1, 0, 1 };
 
-	static void dfs(int y, int x) {
-		visited[y][x] = 1;
-		aptCnt++;
-		for (int i = 0; i < 4; i++) {
-			int ny = y + dy[i];
-			int nx = x + dx[i];
+	public static void dfs(int y, int x) {
+		visited[y][x] = true;
+		cnt++;
+		for (int k = 0; k < 4; k++) {
+			int ny = y + dy[k];
+			int nx = x + dx[k];
 			if (ny >= 0 && nx >= 0 && ny < n && nx < n) {
-				if (map[ny][nx] == 1 && visited[ny][nx] == 0) {
-					visited[ny][nx] = 1;
+				if (visited[ny][nx] == false && map[ny][nx] == 1) {
 					dfs(ny, nx);
 				}
 			}
