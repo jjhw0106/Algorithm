@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Silver_BfsDfs_2667 {
@@ -44,13 +43,13 @@ public class Silver_BfsDfs_2667 {
 		apts.sort(new Comparator<Integer>() {
 			@Override
 			public int compare(Integer o1, Integer o2) {
-				return o1-o2;
+				return o1 - o2;
 			}
 		});
 		for (Integer integer : apts) {
 			System.out.println(integer);
 		}
-		
+
 	}
 
 	static int dy[] = { -1, 0, 1, 0 };
@@ -68,8 +67,10 @@ public class Silver_BfsDfs_2667 {
 				}
 			}
 		}
+
 	}
 }
+
 //	static int num;
 //	static int[][] map;
 //	static String[] apts;
