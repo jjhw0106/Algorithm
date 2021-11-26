@@ -30,23 +30,44 @@ public class Silver_Backtracking_14889 {
 			}
 		}
 		String s = "";
-		pickCase(s, n);
+		pickCase(s, n / 2);
+		System.out.println(min);
 //		teamScore(list);
 	}
 
+	static int idx = 0;
+	static int min;
+
 	public static void pickCase(String s, int remain) {
 		if (remain == 0) {
-			list.add(s);
 			System.out.println(s);
+			int[] t1 = new int[n / 2];
+			int[] t2 = new int[n / 2];
+			int score1 = 0;
+			int score2 = 0;
+			min = 100;
+			for (int i = 0; i < n / 2; i++) {
+				t1[i] = Integer.parseInt(s.split("")[i]);
+				t2[i] = n - 1 - i;
+			}
+			for (int i = 0; i < n / 2; i++) {
+				for (int j = 0; j < n / 2; j++) {
+					score1 += board[t1[i]][t1[j]];
+					score2 += board[t2[i]][t2[j]];
+					System.out.println(score1 + "," + score2);
+					if (Math.abs(score2 - score1) < min) {
+						min = Math.abs(score2 - score1);
+					}
+				}
+			}
 			return;
 		}
 		for (int i = 0; i < n; i++) {
 			if (visited[i] == false) {
 				visited[i] = true;
-				pickCase(s + i + " ", remain - 1);
+				pickCase(s + i, remain - 1);
 				visited[i] = false;
 			}
 		}
 	}
-
 }

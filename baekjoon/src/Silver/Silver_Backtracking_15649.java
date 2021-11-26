@@ -20,7 +20,6 @@ public class Silver_Backtracking_15649 {
 
 		value = new int[n];
 		visited = new boolean[n];
-
 		String s = "";
 		dfs(s, m);
 	}
