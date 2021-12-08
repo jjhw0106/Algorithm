@@ -16,35 +16,50 @@ public class Silver_Search_Binary_10816 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		n = Integer.parseInt(br.readLine());
 		cards = new int[n];
+
 		String[] temp = br.readLine().split(" ");
 		for (int i = 0; i < n; i++) {
 			cards[i] = Integer.parseInt(temp[i]);
 		}
 		Arrays.sort(cards);
+
 		m = Integer.parseInt(br.readLine());
 		targets = new int[m];
-		answer = new int[m];
 		temp = br.readLine().split(" ");
-
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < m; i++) {
-			targets[i] = Integer.parseInt(temp[i]);
-			sb.append(upperBound(0, cards.length-1, targets[i]) - lowerBound());
+			sb.append(upperBound(0, cards.length - 1, Integer.parseInt(temp[i])) - lowerBound(0, cards.length - 1, Integer.parseInt(temp[i]))+" ");
 		}
-		System.out.println(Arrays.toString(answer));
+		System.out.println();
+		System.out.println(sb);
 	}
+
+	static int value = 0;
 
 	public static int upperBound(int lo, int hi, int target) {
-		int cnt = 0;
-
-		return cnt;
+		while (lo < hi) {
+			int mid = (lo + hi) / 2;
+			if (cards[mid] < target) {
+				hi = mid;
+			} else {
+				lo = mid + 1;
+			}
+		}
+		System.out.print("lo"+lo);
+		
+		return lo;
 	}
 
-	public static int lowerBound(int mid, int target) {
-		int cnt = 0;
-		while (mid >= 0 && cards[mid--] == target) {
-			cnt++;
+	public static int lowerBound(int lo, int hi, int target) {
+		while (lo < hi) {
+			int mid = (lo + hi) / 2;
+			if (cards[mid] < target) {
+				lo = mid + 1;
+			} else {
+				hi = mid;
+			}
 		}
-		return cnt;
+		System.out.print("lo"+lo);
+		return lo;
 	}
 }
