@@ -8,9 +8,19 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		String str = br.readLine();
-		String arr[] = str.split(" ");
-		for(int i=0; i<arr.length; i++) {
-			System.out.println(arr[i]);
+		String rightStr="";
+		int right=str.length()-1;
+		System.out.println(reverseString(str, rightStr, right));
+	}
+
+	static String reverseString(String str, String rightStr, int right) {
+		
+		if(right < 0 ) {
+			return rightStr;
 		}
+		
+		rightStr += str.charAt(right);
+		
+		return reverseString(str, rightStr, right-1);
 	}
 }
